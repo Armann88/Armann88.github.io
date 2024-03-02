@@ -5,31 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dosis:wght@200..800&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 
 <body>
     <div class="big_box">
         <div>
-            <h1 class="texts">Randomizer</h1>
+            <h1 class="texts">RANDOMIZER</h1>
             <div id="namesContainer"></div>
-  
+
             <h2 class="team">Team 1:</h2>
             <div class="comand" id="team1Container"></div>
-  
+
             <h2 class="team">Team 2:</h2>
             <div class="comand" id="team2Container"></div>
             <div>
                 <label class="label">
                     <p class="box"> Add Name:</p>
-                    <input
-                        class="input"
-                        type="text"
-                        id="newNameInput"
-                    />
+                    <input class="input" type="text" id="newNameInput" placeholder="Typing Name" />
                 </label>
             </div>
             <div class="marg">
@@ -57,7 +58,7 @@
             const lines = [];
             let currentLine = "";
 
-            for (const word of text.split(" ")) {
+            for (const word of text.split("")) {
                 if (currentLine.length + word.length <= maxChars) {
                     currentLine += `${word}`;
                 } else {
@@ -67,7 +68,7 @@
             }
 
             lines.push(currentLine.trim());
-            return lines.join("\n| ");
+            return lines.join("");
         }
 
         function shuffleArray(array) {
@@ -89,14 +90,14 @@
             const team1Array = shuffledArray.slice(midIndex);
             const team2Array = shuffledArray.slice(0, midIndex);
 
-            document.getElementById("team1Container").innerText = wrapText(team1Array.join(' '), 10);
-            document.getElementById("team2Container").innerText = wrapText(team2Array.join(' '), 10);
+            document.getElementById("team1Container").innerText = wrapText(team1Array.join('|'), 10);
+            document.getElementById("team2Container").innerText = wrapText(team2Array.join('|'), 10);
         }
 
         function handleAddName() {
             newName = document.getElementById("newNameInput").value.trim();
 
-            if (newName !== "") {
+            if (newName !== "|") {
                 originalArray.push(newName);
                 document.getElementById("namesContainer").innerHTML = originalArray
                     .map((name, index) => `
