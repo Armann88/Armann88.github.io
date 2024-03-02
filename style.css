@@ -1,0 +1,123 @@
+body{
+    background-color: black;
+}
+.big_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.name {
+    display: flex;
+    align-items: center;
+}
+
+.name p {
+    margin-right: 10px;
+    font-size: 20px;
+    width: 200px;
+    height: 30px;
+    background-color: rgb(14, 14, 124);
+    color: aliceblue;
+    border-radius: 10px;
+    text-align: center;
+    margin: 15px 10px 0px 0px;
+    font-family: "Inter", sans-serif;
+}
+
+.name button {
+    width: 100px;
+    height: 30px;
+    background-color: red;
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    font-family: "Inter", sans-serif;
+    margin: 15px 10px 0px 10px;
+}
+
+.comand {
+    width: 330px;
+    min-height: 50px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    background-color: rgb(14, 14, 124);
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-family: "Inter", sans-serif;
+}
+
+.team {
+    width: 100px;
+    height: 50px;
+    background-color: rgb(29, 35, 35);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    border-radius: 10px;
+    font-family: "Inter", sans-serif;
+}
+
+.shuffle {
+    width: 100px;
+    height: 50px;
+    background-color: rgb(29, 35, 35);
+    color: white;
+    font-weight: 700;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-family: "Inter", sans-serif;
+}
+
+.box {
+    width: 100px;
+    border-radius: 10px;
+    background-color: #4caf50;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.label {
+    display: flex;
+    align-items: center;
+}
+
+.add {
+    width: 100px;
+    height: 30px;
+    background-color: #4caf50;
+    border-radius: 10px;
+    margin-left: 20px;
+    color: white;
+    margin-top: 20px;
+    font-family: "Inter", sans-serif;
+}
+
+.input {
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.marg {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.texts {
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+}

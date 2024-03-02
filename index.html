@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="big_box">
+        <div>
+            <h1 class="texts">Randomizer</h1>
+            <div id="namesContainer"></div>
+  
+            <h2 class="team">Team 1:</h2>
+            <div class="comand" id="team1Container"></div>
+  
+            <h2 class="team">Team 2:</h2>
+            <div class="comand" id="team2Container"></div>
+            <div>
+                <label class="label">
+                    <p class="box"> Add Name:</p>
+                    <input
+                        class="input"
+                        type="text"
+                        id="newNameInput"
+                    />
+                </label>
+            </div>
+            <div class="marg">
+                <button class="shuffle" onclick="handleShuffle()">
+                    Shuffle
+                </button>
+                <button class="add" onclick="handleAddName()">
+                    Add
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const originalArray = [];
+        const team1 = [];
+        const team2 = [];
+        let newName = "";
+
+        function wrapText(text, maxChars) {
+            if (text.length <= maxChars) {
+                return text;
+            }
+
+            const lines = [];
+            let currentLine = "";
+
+            for (const word of text.split(" ")) {
+                if (currentLine.length + word.length <= maxChars) {
+                    currentLine += `${word}`;
+                } else {
+                    lines.push(currentLine.trim());
+                    currentLine = `${word}`;
+                }
+            }
+
+            lines.push(currentLine.trim());
+            return lines.join("\n| ");
+        }
+
+        function shuffleArray(array) {
+            const newArray = array
+                .map((element) => ({
+                    name: element,
+                    order: Math.random(),
+                }))
+                .sort((a, b) => a.order - b.order)
+                .map((element) => element.name);
+
+            return newArray;
+        }
+
+        function handleShuffle() {
+            const shuffledArray = shuffleArray(originalArray);
+
+            const midIndex = Math.floor(shuffledArray.length / 2);
+            const team1Array = shuffledArray.slice(midIndex);
+            const team2Array = shuffledArray.slice(0, midIndex);
+
+            document.getElementById("team1Container").innerText = wrapText(team1Array.join(' '), 10);
+            document.getElementById("team2Container").innerText = wrapText(team2Array.join(' '), 10);
+        }
+
+        function handleAddName() {
+            newName = document.getElementById("newNameInput").value.trim();
+
+            if (newName !== "") {
+                originalArray.push(newName);
+                document.getElementById("namesContainer").innerHTML = originalArray
+                    .map((name, index) => `
+                        <div class="name" key="${index}">
+                            <p>${name}</p>
+                            <button onclick="handleDeleteName(${index})">Delete</button>
+                        </div>
+                    `)
+                    .join('');
+
+                document.getElementById("newNameInput").value = "";
+                document.getElementById("team1Container").innerText = "";
+                document.getElementById("team2Container").innerText = "";
+            }
+        }
+
+        function handleDeleteName(index) {
+            originalArray.splice(index, 1);
+
+            document.getElementById("namesContainer").innerHTML = originalArray
+                .map((name, index) => `
+                    <div class="name" key="${index}">
+                        <p>${name}</p>
+                        <button onclick="handleDeleteName(${index})">Delete</button>
+                    </div>
+                `)
+                .join('');
+
+            document.getElementById("team1Container").innerText = "";
+            document.getElementById("team2Container").innerText = "";
+        }
+    </script>
+</body>
+
+</html>
