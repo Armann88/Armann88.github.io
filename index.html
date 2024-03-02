@@ -22,15 +22,15 @@
             <h1 class="texts">RANDOMIZER</h1>
             <div id="namesContainer"></div>
 
-            <h2 class="team">Team 1:</h2>
+            <h2 class="team">Team 1</h2>
             <div class="comand" id="team1Container"></div>
 
-            <h2 class="team">Team 2:</h2>
+            <h2 class="team">Team 2</h2>
             <div class="comand" id="team2Container"></div>
             <div>
                 <label class="label">
                     <p class="box"> Add Name:</p>
-                    <input class="input" type="text" id="newNameInput" placeholder="Typing Name" />
+                    <input min maxlength="14" class="input" type="text" id="newNameInput" placeholder="Typing Name" />
                 </label>
             </div>
             <div class="marg">
@@ -68,7 +68,7 @@
             }
 
             lines.push(currentLine.trim());
-            return lines.join("");
+            return lines.join("\n");
         }
 
         function shuffleArray(array) {
@@ -83,6 +83,10 @@
             return newArray;
         }
 
+        function setContainerText(containerId, dataArray) {
+            document.getElementById(containerId).innerText = wrapText(dataArray.join('|'), 14);
+        }
+
         function handleShuffle() {
             const shuffledArray = shuffleArray(originalArray);
 
@@ -90,8 +94,8 @@
             const team1Array = shuffledArray.slice(midIndex);
             const team2Array = shuffledArray.slice(0, midIndex);
 
-            document.getElementById("team1Container").innerText = wrapText(team1Array.join('|'), 10);
-            document.getElementById("team2Container").innerText = wrapText(team2Array.join('|'), 10);
+            setContainerText("team1Container", team1Array);
+            setContainerText("team2Container", team2Array);
         }
 
         function handleAddName() {
@@ -109,8 +113,8 @@
                     .join('');
 
                 document.getElementById("newNameInput").value = "";
-                document.getElementById("team1Container").innerText = "";
-                document.getElementById("team2Container").innerText = "";
+                setContainerText("team1Container", []);
+                setContainerText("team2Container", []);
             }
         }
 
@@ -126,8 +130,8 @@
                 `)
                 .join('');
 
-            document.getElementById("team1Container").innerText = "";
-            document.getElementById("team2Container").innerText = "";
+            setContainerText("team1Container", []);
+            setContainerText("team2Container", []);
         }
     </script>
 </body>
